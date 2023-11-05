@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "65472fc07275d191f33b7b22"
+  },
+  "review": "El balanceado le encanta a mi gato",
+  "product": "Cat Chow",
+  "review_date": {
+    "$date": "2023-11-05T06:01:36.237Z"
+  },
+  "username": "Sara",
+  "product_stars": 4
+}]

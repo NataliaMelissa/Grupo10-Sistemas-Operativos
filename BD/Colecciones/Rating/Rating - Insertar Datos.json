@@ -1,0 +1,9 @@
+db.Rating.insert(
+    {
+        "stars": 4,
+        "product": "Cat Chow",
+        "comment": "El producto es accesible",
+        "username": "Sara",
+        "rating_date": new Date()
+    }
+);
