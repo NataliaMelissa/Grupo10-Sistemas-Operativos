@@ -1,0 +1,38 @@
+db.products.insert(
+{
+	"nombre": "Dog Chow",
+	"precio": 50,
+	"moneda": "soles",
+	"descripción": "balanceado para perros adultos",
+	"proveedor": "Purina",
+	"tag": ["Balanceado", "perros"],
+	"cantidad": 20,
+	"creado": new Date()
+}
+);
+
+db.products.insert(
+{
+	"nombre": "Cat Chow",
+	"precio": 50,
+	"moneda": "soles",
+	"descripción": "balanceado para gatos adultos",
+	"proveedor": "Purina",
+	"tag": ["Balanceado", "gatos"],
+	"cantidad": 20,
+	"creado": new Date()
+}
+);
+
+db.products.insert(
+{
+	"nombre": "Canbo 7kg",
+	"precio": 120,
+	"moneda": "soles",
+	"descripción": "balanceado de cordero para perros cachorros",
+	"proveedor": "Go Pet",
+	"tag": ["Balanceado", "perros"],
+	"cantidad": 20,
+	"creado": new Date()
+}
+);

@@ -1,0 +1,2 @@
+--Update sólo al registro "Emilia"
+db.users.update({"username":"Emilia"}, {$set: {"name": "Emilia García"}});

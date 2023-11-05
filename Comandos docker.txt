@@ -1,0 +1,5 @@
+- Crear el contenedor sin el log: docker run -d --name mydatabase -p 27019:27017 mongo
+- Revisar los procesos: docker ps
+- Revisar el historial de todos los procesos: docker ps -a
+- Revisar todas las imágenes: docker images
+- Eliminar un contenedor: docker rm id_contenedor

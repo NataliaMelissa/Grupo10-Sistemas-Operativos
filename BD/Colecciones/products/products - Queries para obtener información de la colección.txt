@@ -1,0 +1,8 @@
+--Contar los registros
+db.products.count();
+
+--Hacer un select a todo (equivalente a select * from table de sql)
+db.products.find();
+
+--Buscar un producto en específico
+db.products.find("nombre": "Dog Chow");
