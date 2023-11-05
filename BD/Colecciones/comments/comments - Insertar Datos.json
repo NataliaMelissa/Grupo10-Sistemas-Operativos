@@ -1,0 +1,8 @@
+db.comments.insert(
+    {
+        "comment": "OPD justo necesito balanceado para firulais",
+        "username": "Sara",
+        "publication_description": "Campaña promocial de balanceado 30% de descuento en todas tus compras!",
+        "comment_date": new Date()
+    }
+);

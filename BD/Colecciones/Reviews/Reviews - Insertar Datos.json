@@ -1,0 +1,9 @@
+db.Reviews.insert(
+    {
+        "review": "El balanceado le encanta a mi gato",
+        "product": "Cat Chow",
+        "review_date": new Date(),
+        "username": "Sara",
+        "product_stars": 4
+    }
+);
