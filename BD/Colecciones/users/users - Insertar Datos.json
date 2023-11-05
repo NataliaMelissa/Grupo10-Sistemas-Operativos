@@ -52,3 +52,14 @@ db.users.insert(
         "registered_date": new Date()
     }
 );
+
+db.users.insert(
+    {
+        "username": "admin",
+        "password": "admin1234",
+        "name": "Admin SuperPet",
+        "email": "admin@superpet.com",
+        "active": true,
+        "registered_date": new Date()
+    }
+);
