@@ -1,0 +1,21 @@
+// Crear una nueva revisión en la colección "Review"
+POST /reviews
+
+{
+  "review": "Mi perro disfruta de este alimento",
+  "product": "Purina Pro Plan",
+  "review_date": "2023-11-05T19:39:00.591Z",
+  "username": "Ana",
+  "product_stars": 5
+}
+// Leer una revisión específica por su ID
+GET /reviews/6547ecdc5b3feaa24cb03857
+// Actualizar la revisión "6547ecdc5b3feaa24cb03858" con nuevos datos
+PUT /reviews/6547ecdc5b3feaa24cb03858
+
+{
+  "review": "Mimaskot es la marca que siempre elijo para mi gato. ¡Le encanta!",
+  "product_stars": 5
+}
+// Eliminar una revisión específica por su ID
+DELETE /reviews/6547ecdc5b3feaa24cb03859
