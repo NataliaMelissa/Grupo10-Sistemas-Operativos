@@ -1,0 +1,8 @@
+db.publications.update(
+  { _id: ObjectId("65480fd056b3b1694b566b97") },
+  { $set: { publication_description: 'Llevate premios y descuentos en la ruleta! Tienes un tiro por cada 200 soles de compra en cualquiera de nuestras sedes (Editado)' } }
+);
+
+db.publications.deleteOne({ _id: ObjectId("65480f9856b3b1694b566b96") });
+
+db.publications.find({_id: ObjectId("65480f9856b3b1694b566b95")});
