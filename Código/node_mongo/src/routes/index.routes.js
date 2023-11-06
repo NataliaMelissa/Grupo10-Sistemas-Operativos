@@ -90,5 +90,70 @@ router.delete("/usersUpdate:id", async(req, res) => {
 
 //---------------------------------------------------USERS FIN----------------------------------------------------------
 
+//---------------------------------------------------REVIEWS INI----------------------------------------------------------
+
+// Crear una review (POST)
+router.post('/reviews', async (req, res) => {
+  try {
+    const reviewData = req.body;
+    const newReview = new Review(reviewData);
+    const savedReview = await newReview.save();
+    res.status(201).json(savedReview);
+  } catch (error) {
+    res.status(500).json({ error: 'No se pudo crear la revisión' });
+  }
+});
+
+// Obtener todas las reviews (GET)
+router.get('/reviews', async (req, res) => {
+  try {
+    const reviews = await Review.find();
+    res.json(reviews);
+  } catch (error) {
+    res.status(500).json({ error: 'No se pudieron obtener las revisiones' });
+  }
+});
+
+// Obtener una review por su ID (GET)
+router.get('/reviews/:id', async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id);
+    if (!review) {
+      return res.status(404).json({ error: 'Revisión no encontrada' });
+    }
+    res.json(review);
+  } catch (error) {
+    res.status(500).json({ error: 'No se pudo obtener la revisión' });
+  }
+});
+
+// Actualizar una review por su ID (PUT)
+router.put('/reviews/:id', async (req, res) => {
+  try {
+    const updatedReview = await Review.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updatedReview) {
+      return res.status(404).json({ error: 'Revisión no encontrada' });
+    }
+    res.json(updatedReview);
+  } catch (error) {
+    res.status(500).json({ error: 'No se pudo actualizar la revisión' });
+  }
+});
+
+// Eliminar una review por su ID (DELETE)
+router.delete('/reviews/:id', async (req, res) => {
+  try {
+    const deletedReview = await Review.findByIdAndRemove(req.params.id);
+    if (!deletedReview) {
+      return res.status(404).json({ error: 'Revisión no encontrada' });
+    }
+    res.json(deletedReview);
+  } catch (error) {
+    res.status(500).json({ error: 'No se pudo eliminar la revisión' });
+  }
+});
+
+//---------------------------------------------------REVIEWS FIN----------------------------------------------------------
+
 module.exports = router; //Exportar la variable al modelo
 console.log("(index.router) se exportó el router con module.exports");

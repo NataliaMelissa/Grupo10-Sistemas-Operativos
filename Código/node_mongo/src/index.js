@@ -16,5 +16,8 @@ console.log("(index.js) se llamó al archivo routes.js");
 app.use(require("./userModel.js")); //Llamar al userModel
 console.log("(index.js) se llamó al archivo userModel.js");
 
+app.use(require("./reviewModel.js"));
+console.log("(index.js) se llamó al archivo reviewModel.js");
+
 app.listen(3000); //Indicar a la aplicación que escuche ese puerto para el servicio web
 console.log("(index.js) Se configuró la aplicación para que escuche al puerto 3000");
