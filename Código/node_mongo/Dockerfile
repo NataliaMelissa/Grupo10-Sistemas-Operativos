@@ -1,8 +1,8 @@
 FROM node:18
 
-RUN mkdir -p /target/src/app
+RUN mkdir -p /usr/src/app
 
-WORKDIR /target/src/app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
