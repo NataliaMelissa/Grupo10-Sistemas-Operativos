@@ -13,8 +13,14 @@ console.log("(index.js) se indicó que se debe utilizar express.json");
 app.use(require("./routes/index.routes.js")) //Llamar a los servicios
 console.log("(index.js) se llamó al archivo index.routes.js");
 
+app.use(require("./routes/index.routes_users.js")) //Llamar a los servicios de users (CRUD)
+console.log("(index.js) se llamó al archivo index.routes_users.js");
+
 app.use(require("./routes/index.routes_publications.js")) //Llamar a los servicios de publications (CRUD)
 console.log("(index.js) se llamó al archivo index.routes_publications.js");
+
+app.use(require("./routes/index.routes_reviews.js")) //Llamar a los servicios de reviews (CRUD)
+console.log("(index.js) se llamó al archivo index.routes_reviews.js");
 
 app.use(require("./userModel.js")); //Llamar al userModel
 console.log("(index.js) se llamó al archivo userModel.js");
