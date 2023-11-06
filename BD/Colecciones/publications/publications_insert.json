@@ -1,0 +1,36 @@
+db.publications.insertMany([ { 
+    publication_description: '¡Oferta de la semana! Lleva dos y paga uno en accesorios para mascotas.', 
+    username_publishing: 'User123', 
+    publication_date: ISODate("2023-11-06T09:20:00Z"), 
+    has_attachment: false 
+}, 
+{ 
+    publication_description: '¡Gran inauguración! 10% de descuento para los primeros 100 clientes que hagan una compra en nuestra nueva sede Independencia', 
+    username_publishing: 'Admin', 
+    publication_date: ISODate("2023-11-06T15:45:00Z"), 
+    has_attachment: true 
+}, 
+{ 
+    publication_description: 'Solo hoy! 3x2 en juguetes para gatos marca hartz', 
+    username_publishing: 'Admin', 
+    publication_date: ISODate("2023-11-07T08:00:00Z"), 
+    has_attachment: true 
+}, 
+{ 
+    publication_description: '¡Volvieron los bosales hipoalergenicos! Ponle bozal a tu perro y evita las multas', 
+    username_publishing: 'Admin', 
+    publication_date: ISODate("2023-11-07T12:30:00Z"), 
+    has_attachment: false 
+}, 
+{ 
+    publication_description: 'Llevate premios y descuentos en la ruleta! Tienes un tiro por cada 100 soles de compra en cualquiera de nuestras sedes', 
+    username_publishing: 'Admin', 
+    publication_date: ISODate("2023-11-08T10:00:00Z"), 
+    has_attachment: true 
+} ]);
+db.publications.insert({ 
+    publication_description: '¡Oferta de la semana! Lleva dos y paga uno en accesorios para mascotas.', 
+    username_publishing: 'User1', 
+    publication_date: ISODate("2023-11-06T09:20:00Z"), 
+    has_attachment: false 
+});
