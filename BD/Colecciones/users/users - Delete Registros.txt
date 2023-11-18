@@ -1,2 +1,0 @@
---Borrar el registro con name "borrar registro"
-db.users.remove({"_id": ObjectId("65472d987275d191f33b7b21")});

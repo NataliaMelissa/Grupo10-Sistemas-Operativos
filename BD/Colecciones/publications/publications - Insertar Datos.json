@@ -1,9 +1,0 @@
-db.publications.insert(
-    {
-        "publication_description": "Campaña promocial de balanceado 30% de descuento en todas tus compras!",
-        "username_publishing": "Admin",
-        "publication_date": new Date(),
-        "has_attachment": true,
-        "attachment_type": "png"
-    }
-);
