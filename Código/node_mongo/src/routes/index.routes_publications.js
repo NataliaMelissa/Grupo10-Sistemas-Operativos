@@ -1,11 +1,12 @@
-//Variables
+
+/*//Variables
 const {Router} = require ("express") //Importar la librería express
 console.log("(index.router) Se importó la librería express");
 
 const router = Router() //Crear la variable router
 console.log("(index.router) Se creó la variable router = Router()");
 
-const ModelPublications = require("../publicationsModel.js"); //Llamar al modelo PUBLICATIONS de la BD
+const ModelPublications = require("../models/publicationsModel.js"); //Llamar al modelo PUBLICATIONS de la BD
 console.log("(index.router) Llamar a userModel para obtener el schema publications");
 
 //Función GET para lo primero que se ve al poner localhost:3000/
@@ -91,4 +92,30 @@ router.delete("/publicationsUpdate:id", async(req, res) => {
 //---------------------------------------------------PUBLICATIONS FIN----------------------------------------------------------
 
 module.exports = router; //Exportar la variable al modelo
-console.log("(index.router) se exportó el router con module.exports");
+console.log("(index.router) se exportó el router con module.exports")*/
+const { Router } = require("express");
+const router = Router();
+
+const ModelPublications = require("../models/publicationsModel.js");
+const PublicationsController = require("../controllers/PublicationsController.js");
+
+
+// Mostrar la vista de reviews
+router.get("/publications", PublicationsController.mostrar);
+
+// CRUD REVIEWS - CREAR UN NUEVO REVIEW (POST):
+router.post("/publicationsPost", PublicationsController.createPublications);
+
+// CRUD REVIEWS - OBTENER TODOS LOS REVIEWS (GET):
+router.get("/publicationsGet", PublicationsController.getAllPublications);
+
+// CRUD REVIEWS - OBTENER SÓLO 1 REVIEW (GET ONE):
+router.get("/publicationsGet/:id", PublicationsController.getPublicationsById);
+
+// CRUD REVIEWS - ACTUALIZAR UN REVIEW (UPDATE):
+router.put("/publicationsUpdate/:id", PublicationsController.updatePublications);
+
+// CRUD REVIEWS - BORRAR UN REVIEW (DELETE):
+router.delete("/publicationsDelete/:id", PublicationsController.deletePublications);
+
+module.exports = router;

@@ -4,13 +4,14 @@ services:
   webapp:
     container_name: contenedor_app
     restart: always
-    build: .
+    build: . 
     ports:
       - "5000:3000"
-    links:
+    links:  
       - database
     volumes:
       - .:/usr/src/app
+
   database:
     container_name: contenedor_db
     image: mongo

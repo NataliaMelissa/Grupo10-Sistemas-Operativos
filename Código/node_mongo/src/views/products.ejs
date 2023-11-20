@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Agregamos FontAwesome para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-/+EyC9YntA+nz9rP6bzwv4DEfwxQ2cFvB+H9vvGzvAbfF1p0/xxm6StGQhqMmkFIn+9qUcRKt8U9m92OLNf0ww==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Columna de la Lista de Products -->
+            <div class="col-md-8">
+                <a href="http://localhost:3000/" class="text-decoration-none">
+                    <i class="fas fa-arrow-left me-2"></i> Volver
+                </a>
+                <h1>Lista de Products</h1>
+                
+                <!-- Lista de Products existentes -->
+                <ul class="list-group">
+                    <% for (let i = products.length - 1; i >= 0; i--) { %>
+                        <li class="list-group-item">
+                            <p><strong>ID:</strong> <%= products[i]._id %></p>
+                            <p><strong>nombre:</strong> <%= products[i].nombre %></p>
+                            <p><strong>precio:</strong> <%= products[i].precio %></p>
+                            <p><strong>moneda:</strong> <%= products[i].moneda %></p>
+                            <p><strong>descripción:</strong> <%= products[i].descripción %></p>
+                            <p><strong>proveedor:</strong> <%= products[i].proveedor %></p>
+                            <p><strong>cantidad:</strong> <%= products[i].cantidad %></p>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+
+
+
+            <!-- Columna del Panel de Administración -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Administración de Products</h5>
+                    
+                        <button class="btn btn-info" onclick="recargarPagina()">Leer</button>
+                        <div class="spinner-border text-info d-none" role="status" id="loadingSpinner">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <script>
+                            function recargarPagina() {
+                                console.log('Inicio de recargarPagina');
+                                document.getElementById('loadingSpinner').classList.remove('d-none');
+                                setTimeout(() => {
+                                    location.reload();
+                                    console.log('Página recargada');
+                                    document.getElementById('loadingSpinner').classList.add('d-none');
+                                }, 700);
+                            }
+                        </script>
+
+                        <!----------------------------------------------- Formulario para Crear un Producto ----------------------------------------------->
+                        <button class="btn btn-success mb-2" data-bs-toggle="collapse" data-bs-target="#crearForm">Crear</button>
+
+                        <div class="collapse" id="crearForm">
+                            <form id="crearProductForm" action="/productPost" method="POST">
+                                <div class="mb-3">
+                                    <label for="nombre" class="form-label">Nombre del Producto:</label>
+                                    <textarea class="form-control" id="nombre" name="nombre" rows="3" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio" class="form-label">Precio del Producto:</label>
+                                    <input type="text" class="form-control" id="precio" name="precio" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="moneda" class="form-label">Moneda:</label>
+                                    <input type="text" class="form-control" id="moneda" name="moneda" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="descripción" class="form-label">Descripción del Producto:</label>
+                                    <input type="text" class="form-control" id="descripción" name="descripción" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="proveedor" class="form-label">Proveedor del Producto:</label>
+                                    <input type="text" class="form-control" id="proveedor" name="proveedor" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cantidad" class="form-label">Cantidad del Producto:</label>
+                                    <input type="text" class="form-control" id="cantidad" name="cantidad" required>
+                                </div>
+                                <button type="button" class="btn btn-success mb-2" onclick="crearProduct()">Guardar</button>
+                            </form>
+                        </div>
+
+                        <script>
+                            function crearProduct() {
+                                console.log('Inicio de crearProduct');
+                                const nombre = document.getElementById('nombre').value;
+                                const precio = document.getElementById('precio').value;
+                                const moneda = document.getElementById('moneda').value;
+                                const descripción = document.getElementById('descripción').value;
+                                const proveedor = document.getElementById('proveedor').value;
+                                const cantidad = document.getElementById('cantidad').value;
+
+                                if (!nombre || !precio || !moneda || !descripción || !proveedor || !cantidad) {
+                                    alert("Todos los campos son obligatorios");
+                                    console.log('Fin de crearProduct - Campos incompletos');
+                                    return;
+                                }
+
+                                document.getElementById('crearProductForm').action = '/productPost';
+
+                                fetch('/productPost', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ nombre, precio, moneda, descripción, proveedor, cantidad }),
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log('Respuesta del servidor:', data);
+
+                                    setTimeout(() => {
+                                        location.href = '/products';
+                                        console.log('Página recargada después de crear un nuevo producto');
+                                    }, 1000);
+                                })
+                                .catch(error => {
+                                    console.error('Error al enviar la solicitud POST:', error);
+                                    alert('Error al crear el nuevo producto. Consulta la consola para más detalles.');
+                                });
+
+                                console.log('Fin de crearProduct');
+                            }
+                        </script>
+                        <!----------------------------------------------- Formulario para Crear un Producto ----------------------------------------------->
+
+                        <!----------------------------------------------- Formulario para Actualizar un Producto ----------------------------------------------->
+                    
+                        <button class="btn btn-warning mb-2" data-bs-toggle="collapse" data-bs-target="#editarForm">Actualizar</button>
+                        <div class="collapse" id="editarForm">
+                            <form id="editarProductForm" method="PUT" action="">                                
+                                <div class="mb-3">
+                                    <label for="idActualizar" class="form-label">ID del Producto a Actualizar:</label>
+                                    <input type="text" class="form-control" id="idActualizar" name="idActualizar" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nuevoNombre" class="form-label">Nueva Nombre del Producto:</label>
+                                    <textarea class="form-control" id="nuevoNombre" name="nuevoNombre" rows="3" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nuevoPrecio" class="form-label">Nuevo Precio del Producto:</label>
+                                    <input type="text" class="form-control" id="nuevoPrecio" name="nuevoPrecio" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nuevaMoneda" class="form-label">Nueva Moneda del Precio del Producto:</label>
+                                    <input type="text" class="form-control" id="nuevaMoneda" name="nuevaMoneda" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nuevasDescripción" class="form-label">Nueva Descripción del Producto:</label>
+                                    <input type="text" class="form-control" id="nuevasDescripción" name="nuevasDescripción" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nuevoProveedor" class="form-label">Nuevo Proveedor del Producto:</label>
+                                    <input type="text" class="form-control" id="nuevoProveedor" name="nuevoProveedor" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nuevaCantidad" class="form-label">Nueva Cantidad del Producto:</label>
+                                    <input type="text" class="form-control" id="nuevaCantidad" name="nuevaCantidad" required>
+                                </div>
+                                <button type="button" class="btn btn-warning" onclick="confirmarActualizar()">Actualizar</button>
+                            </form>
+                        </div>
+                        <script>
+                            function confirmarActualizar() {
+                                console.log('Inicio de confirmarActualizar');
+
+                                const idActualizar = document.getElementById('idActualizar').value;
+                                const nuevoNombre = document.getElementById('nuevoNombre').value;
+                                const nuevoPrecio = document.getElementById('nuevoPrecio').value;
+                                const nuevaMoneda = document.getElementById('nuevaMoneda').value;
+                                const nuevasDescripción = document.getElementById('nuevasDescripción').value;
+                                const nuevoProveedor = document.getElementById('nuevoProveedor').value;
+                                const nuevaCantidad = document.getElementById('nuevaCantidad').value;
+
+                                if (!nuevoNombre || !nuevoPrecio || !nuevaMoneda || !nuevasDescripción || !nuevoProveedor || !nuevaCantidad) {
+                                    alert("Todos los campos son obligatorios");
+                                    console.log('Fin de confirmarActualizar - Campos incompletos');
+                                    return;
+                                }
+
+                                document.getElementById('editarProductForm').action = '/productsUpdate/' + idActualizar;
+
+                                fetch('/productsUpdate/' + idActualizar, {
+                                    method: 'PUT',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify({ 
+                                        nombre: nuevoNombre,
+                                        precio: nuevoPrecio,
+                                        moneda: nuevaMoneda,
+                                        descripción: nuevasDescripción,
+                                        proveedor: nuevoProveedor,
+                                        cantidad: nuevaCantidad
+                                    }),
+                                })
+                                .then(response => response.json())
+                                .then(data => {
+                                    console.log('Respuesta del servidor:', data);
+                                    setTimeout(() => {
+                                        location.reload();
+                                        console.log('Página recargada después de actualizar un producto');
+                                    }, 1000);
+                                })
+                                .catch(error => {
+                                    console.error('Error al enviar la solicitud PUT:', error);
+                                    alert('Error al actualizar el producto. Consulta la consola para más detalles.');
+                                });
+
+                                console.log('Fin de confirmarActualizar');
+                            }
+                        </script>
+
+
+                        <!----------------------------------------------- Formulario para Actualizar un Producto ----------------------------------------------->
+
+                        <!----------------------------------------------- Formulario para Eliminar un Producto por ID ----------------------------------------------->
+                        <button class="btn btn-danger mb-2" data-bs-toggle="collapse" data-bs-target="#eliminarForm">Eliminar</button>
+                        <div class="collapse" id="eliminarForm">
+                        
+                            <form id="eliminarProductForm" method="DELETE" action="">
+                                <div class="mb-3">
+                                    <label for="idEliminar" class="form-label">ID del Producto a Eliminar:</label>
+                                    <input type="text" class="form-control" id="idEliminar" name="idEliminar" required>
+                                </div>
+                                <button type="button" class="btn btn-danger" onclick="confirmarEliminar()">Eliminar</button>
+                            </form>                                                       
+                        </div>
+                        
+                        <script>
+                            function confirmarEliminar() {
+                            console.log('Inicio de confirmarEliminar');
+                            const idEliminar = document.getElementById('idEliminar').value;
+                            alert("ID a eliminar: " + idEliminar);
+                            if (!idEliminar) {
+                                alert("ID no válido");
+                                console.log('Fin de confirmarEliminar - ID no válido');
+                                return;
+                            }
+                            document.getElementById('eliminarProductForm').action = '/productsDelete/' + idEliminar;
+                            fetch('/productsDelete/' + idEliminar, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('Respuesta del servidor:', data);
+                                setTimeout(() => {
+                                    location.reload();
+                                    console.log('Página recargada después de eliminar');
+                                }, 1000);
+                            })
+                            .catch(error => {
+                                console.error('Error al enviar la solicitud DELETE:', error);
+                                alert('Error al eliminar el producto. Consulta la consola para más detalles.');
+                            });
+                            console.log('Fin de confirmarEliminar');
+                        }
+                        </script>   
+                        <!----------------------------------------------- Formulario para Eliminar un Producto por ID ----------------------------------------------->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

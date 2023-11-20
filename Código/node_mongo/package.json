@@ -1,5 +1,5 @@
 {
-  "name": "node_mongo",
+  "name": "crud_test",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,11 +9,13 @@
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "Natalia Maury Castañeda",
+  "author": "Luis Zarate Gamarra",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
     "mongoose": "^8.0.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "tr46": "^5.0.0"
   }
 }
