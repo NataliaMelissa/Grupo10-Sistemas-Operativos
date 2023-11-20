@@ -2,15 +2,15 @@ const Product = require("../models/productModel");
 
 module.exports.mostrar = async (req, res) => {
   try {
-    const product = await Product.find({});
-    res.render("product", { product }); // Cambia el nombre de la vista si es necesario
+    const products = await Product.find({});
+    res.render("products", { products }); // Cambia el nombre de la vista si es necesario
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error al obtener los productos", error: error.message });
   }
 };
 
-module.exports.createProduct = async (req, res) => {
+module.exports.createProducts = async (req, res) => {
   try {
     const body = req.body;
     const respuesta = await Product.create(body);
@@ -31,7 +31,7 @@ module.exports.getAllProducts = async (req, res) => {
   }
 };
 
-module.exports.getProductSById = async (req, res) => {
+module.exports.getProductsById = async (req, res) => {
   try {
     const id = req.params.id;
     const respuesta = await Product.findOne({ _id: id });

@@ -36,3 +36,29 @@ db.products.insert(
 	"creado": new Date()
 }
 );
+
+db.products.insert(
+{
+	"nombre": "Matiz 2kg",
+	"precio": 60,
+	"moneda": "soles",
+	"descripción": "balanceado de salmón para gatos castrados",
+	"proveedor": "Go Pet",
+	"tag": ["Balanceado", "gatos"],
+	"cantidad": 15,
+	"creado": new Date()
+}
+);
+
+db.products.insert(
+{
+	"nombre": "Origens 20kg",
+	"precio": 200,
+	"moneda": "soles",
+	"descripción": "Arena para gatos",
+	"proveedor": "Go Pet",
+	"tag": ["Arena", "gatos"],
+	"cantidad": 30,
+	"creado": new Date()
+}
+);

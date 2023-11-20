@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 
-const commentSchema = new mongoose.Schema(
+const commentsSchema = new mongoose.Schema(
   {
     comment: { type: String },
     username: { type: String },
     publication_description: { type: String },
-    comment_date: { type: Date },
+    comment_date: { type: Date, default: Date.now },
   },
   {
     timestamps: true,
@@ -13,6 +13,6 @@ const commentSchema = new mongoose.Schema(
   }
 );
 
-const Comment = mongoose.model("Comment", commentSchema);
+const Comments = mongoose.model("Comments", commentsSchema);
 
-module.exports = Comment;
+module.exports = Comments;

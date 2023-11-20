@@ -2,8 +2,8 @@
 const { Router } = require("express");
 const router = Router();
 
-const ModelUsers = require("../models/usersModel.js");
-const UsersController = require("../controllers/UsersController.js");
+const ModelUsers = require("../models/userModel.js");
+const UsersController = require("../controllers/UserController.js");
 
 
 // Mostrar la vista de reviews
@@ -16,7 +16,7 @@ router.post("/usersPost", UsersController.createUsers);
 router.get("/usersGet", UsersController.getAllUsers);
 
 // CRUD USUARIOS - OBTENER SÓLO 1 USUARIO (GET ONE):
-router.get("/usersGet/:id", UsersController.getUSersById);
+router.get("/usersGet/:id", UsersController.getUsersById);
 
 // CRUD USUARIOS - ACTUALIZAR UN USUARIO (UPDATE):
 router.put("/usersUpdate/:id", UsersController.updateUsers);
