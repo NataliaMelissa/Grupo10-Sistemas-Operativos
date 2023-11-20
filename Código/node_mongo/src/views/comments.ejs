@@ -199,7 +199,7 @@
                                 console.log('Fin de confirmarEliminar - ID no válido');
                                 return;
                             }
-                            document.getElementById('eliminarCOmmentsForm').action = '/commentsDelete/' + idEliminar;
+                            document.getElementById('eliminarCommentsForm').action = '/commentsDelete/' + idEliminar;
                             fetch('/commentsDelete/' + idEliminar, {
                                 method: 'DELETE',
                                 headers: {
